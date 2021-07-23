@@ -1,6 +1,6 @@
 # JetpackComposePokedex
 
-App developed to learn and study android jetpackcompose
+App developed to learn and study android jetpackcompose.
 
 You can follow the same tutotrial on Philipp Lackner playlist: https://www.youtube.com/watch?v=v0of23TxIKc&list=PLQkwcJG4YTCTimTCpEL5FZgaWdIZQuB7m&index=1
 

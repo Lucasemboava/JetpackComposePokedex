@@ -3,19 +3,14 @@ package com.jetpackcomposepokedex
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.graphics.BlendMode.Companion.Color
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import com.jetpackcomposepokedex.pokemonlist.PokemonListScreen
 import com.jetpackcomposepokedex.ui.theme.JetpackComposePokedexTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,38 +23,32 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = "poemon_list_screen"
+                    startDestination = "pokemon_list_screen"
                 ) {
                     composable("pokemon_list_screen") {
-
+                        PokemonListScreen(navController = navController)
                     }
-
-                    composable("pokemon_detail_screen/{dominantColor}/{pokemonName}",
+                    composable(
+                        "pokemon_detail_screen/{dominantColor}/{pokemonName}",
                         arguments = listOf(
                             navArgument("dominantColor") {
                                 type = NavType.IntType
-
                             },
-                            navArgument("poemonName") {
+                            navArgument("pokemonName") {
                                 type = NavType.StringType
                             }
                         )
-
                     ) {
                         val dominantColor = remember {
-                            val color = it.arguments?.getInt("")
-                            color?.let { Color(it) } ?: androidx.compose.ui.graphics.Color.White
+                            val color = it.arguments?.getInt("dominantColor")
+                            color?.let { Color(it) } ?: Color.White
                         }
-
                         val pokemonName = remember {
-
                             it.arguments?.getString("pokemonName")
                         }
 
                     }
-
                 }
-
             }
         }
     }
